@@ -1,11 +1,10 @@
 // static page 
-
+import { Metadata } from "next";
 // if you want to be explicit 
 export const dynamic = 'force-static'
 
-import { Metadata } from "next";
 
-export const Metadata:Metadata = {
+export const metadata:Metadata = {
     title: 'About us',
     description: 'We are social media company',
 }
