@@ -1,30 +1,44 @@
-"use client";
-export function ProfileForm({user}: any){
+'use client';
 
-    const updateUser= async (e:React.FormEvent <HTMLFormElement>) =>{
-        e.preventDefault();
+export function ProfileForm({ user }: any) {
 
-        const formData = new FormData(e.currentTarget);
-
-        const body = {
-            name: formData.get('name'),
-            bio: formData.get('bio'),
-            age: formData.get('age'),
-            image: formData.get('image'),
-        };
-
-        const res = await fetch('api/user',{
-            method:'PUT',
-            body:JSON.stringify(body),
-            headers: {
-                'Content-Type':'application/json',
-            },
-        });
-        await res.json();
+  const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      
+      const formData = new FormData(e.currentTarget);
+  
+      const body = {
+        name: formData.get('name'),
+        bio: formData.get('bio'),
+        age: formData.get('age'),
+        image: formData.get('image'),
+      };
+  
+      const res = await fetch('/api/user', {
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error || 'Failed to update profile');
+      }
+  
+      const data = await res.json();
+      console.log('Profile updated successfully:', data);
+      // You might want to add some UI feedback here
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      // You might want to add some UI error feedback here
     }
+  };
 
-    return(
-        <div>
+  return (
+    <div>
       <h2>Edit Your Profile</h2>
       <form onSubmit={updateUser}>
         <label htmlFor="name">Name</label>
@@ -44,5 +58,5 @@ export function ProfileForm({user}: any){
         <button type="submit">Save</button>
       </form>
     </div>
-    )
+  );
 }
