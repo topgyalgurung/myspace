@@ -5,6 +5,7 @@ import ReturnCard from '@/app/components/UserCard/UserCard'
 export default async function Users(){
     // to test error 
     // throw new Error('this is an error');
+    
     const users = await prisma.user.findMany();
 
     return(
