@@ -1,9 +1,13 @@
+'use client';
+
 import Link from "next/link"
 import Image from "next/image"
 import styles from './NavMenu.module.css'
 import { SignInButton } from "@/app/components/buttons"
+import { useSession } from 'next-auth/react';
 
 export default function NavMenu() {
+    useSession(); // Keep session active but we don't need the values here
     return (
         <nav className ={styles.nav}>
             <Link href={'/'}>

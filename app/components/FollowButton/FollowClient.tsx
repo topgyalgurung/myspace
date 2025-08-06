@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useTransition, useState } from "react";
 
@@ -44,6 +45,9 @@ export default function FollowClient({targetUserId, isFollowing}: Props){
             method:'DELETE',  
         });
         setIsFetching(false);
+        // we are refreshing entire route anytime a relation changes 
+        // if we had multiple follow buttons on same page, rerender all of them 
+        // better might be make FollowButton client component in that case 
         startTransition(() => router.refresh());
     }
 

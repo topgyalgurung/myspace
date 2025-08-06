@@ -18,7 +18,7 @@ export default async function FolllowButton({targetUserId}:Props){
     const isFollowing = await prisma.follows.findFirst({
         where:{followerId: currentUserId, followingId: targetUserId},
     }) 
-
+    //   (!!) to convert to boolean value
     return(
         <FollowClient targetUserId = {targetUserId} isFollowing={!!isFollowing}/>
     );
