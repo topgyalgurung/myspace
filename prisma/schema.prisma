@@ -56,6 +56,16 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  followedBy    Follows[] @relation("following")
+  following     Follows[] @relation("follower")
+}
+
+model Follows{
+  followerId String 
+  followingId String 
+  follower User @relation("follower", fields:[followerId], references:[id])
+  following User @relation("following", fields:[followingId], references: [id])
+  @@id([followerId, followingId])
 }
 
 model VerificationToken {
