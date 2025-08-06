@@ -28,15 +28,12 @@ export default async function UserProfile({params}:Props){
                 width={300}
                 height={300}
                 src = {image ?? "/meman.webp"}
-
                 alt={`${name}'s profile`}
             />
             <h3>Bio</h3>
             <p>{bio}</p>
-
             {/* @ts-expect-error Server Component */}
             <FollowButton targetUserId = {params.id}/>
-
         </div>
     )
 
