@@ -12,6 +12,7 @@ export default function FollowClient({targetUserId, isFollowing}: Props){
 
     const [isPending, startTransition] = useTransition();
     const [isFetching, setIsFetching ] = useState(false);
+    
     // derived state 
     const isMutating = isFetching || isPending;
 

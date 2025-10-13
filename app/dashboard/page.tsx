@@ -3,6 +3,8 @@ import {redirect} from 'next/navigation';
 import {prisma} from '@/lib/prisma';
 import {ProfileForm} from './ProfileForm';
 import { SignOutButton } from '@/app/components/buttons';
+import Image from 'next/image';
+import styles from './page.module.css';
 
 // old way 
 // import {authOptions} from '../api/auth/[...nextauth]/route';
@@ -24,10 +26,27 @@ export default async function Dashboard() {
     });
 
     return(
-        <div>
-            <h1> Dashboard </h1>
-                <SignOutButton/>
-            <ProfileForm user = {user}/>
+        <div className={styles.dashboardContainer}>
+            <div className={styles.dashboardHeader}>
+                <h1 className={styles.dashboardTitle}>Dashboard</h1>
+            </div>
+            <div className={styles.dashboardContent}>
+                <div className={styles.leftSection}>
+                    <div className={styles.userProfile}>
+                        <Image
+                            src={user?.image ?? '/meman.webp'}
+                            width={80}
+                            height={80}
+                            alt="Profile Image"
+                            className={styles.profileImage}
+                        />
+                        <SignOutButton/>
+                    </div>
+                </div>
+                <div className={styles.rightSection}>
+                    <ProfileForm user={user}/>    
+                </div>
+            </div>
         </div>
     )
 

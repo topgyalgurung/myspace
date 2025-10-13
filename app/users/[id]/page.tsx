@@ -16,10 +16,9 @@ export async function generateMetadata({params}:Props):Promise<Metadata>{
 }
 
 export default async function UserProfile({params}:Props){
-    // params should be await fix {where:{id:id}}
     const {id} = await params
     const user = await prisma.user.findUnique({where:{id}});
-    const {name, bio, image} = user ?? {};
+    const {name, bio, image, age} = user ?? {};
 
     return(
         <div>
@@ -30,8 +29,9 @@ export default async function UserProfile({params}:Props){
                 src = {image ?? "/meman.webp"}
                 alt={`${name}'s profile`}
             />
-            <h3>Bio</h3>
-            <p>{bio}</p>
+            <h4>Bio: {bio}</h4>
+            <h4>Age: {age}</h4>
+        
             {/* @ts-expect-error Server Component */}
             <FollowButton targetUserId = {id}/>
         </div>

@@ -3,7 +3,8 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-// import {z} from 'zod';  // for server side to validate form fiels
+import { redirect } from 'next/navigation';
+
 
 export async function updateUser(formData: FormData){
     
@@ -25,6 +26,6 @@ export async function updateUser(formData: FormData){
         data: rawData,
     });
     revalidatePath(`/users/${session.user.id}`); // refetch & cache, revalidate and update server component
-
+    redirect('/users')
     return { success: true };
 }
