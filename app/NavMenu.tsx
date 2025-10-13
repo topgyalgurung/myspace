@@ -32,10 +32,12 @@ export default function NavMenu() {
                     <SignInButton/>
                 </li>
 
-            </ul>
-
-        </nav>
-
-
-    )
+        <li>
+        <AuthCheck>
+            <SignOutButton />
+          </AuthCheck>
+        </li>
+      </ul>
+    </nav>
+  );
 }
