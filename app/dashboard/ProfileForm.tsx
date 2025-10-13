@@ -1,5 +1,4 @@
 'use client';
-
 import { updateUser } from "./updateUser";
 // import { useOptimistic } from "react";
 
