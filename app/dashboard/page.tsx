@@ -3,6 +3,8 @@ import {redirect} from 'next/navigation';
 import {prisma} from '@/lib/prisma';
 import {ProfileForm} from './ProfileForm';
 import { SignOutButton } from '@/app/components/buttons';
+import Image from 'next/image';
+import styles from './dashboard.module.css';
 
 // old way 
 // import {authOptions} from '../api/auth/[...nextauth]/route';

@@ -1,36 +1,33 @@
-'use client';
-
-import Link from "next/link"
-import Image from "next/image"
-import styles from './NavMenu.module.css'
-import { SignInButton } from "@/app/components/buttons"
-import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import styles from './NavMenu.module.css';
+import Image from 'next/image';
+import { SignInButton, SignOutButton } from '@/app/components/buttons';
+import AuthCheck from '@/app/components/AuthCheck';
 
 export default function NavMenu() {
-    useSession(); // Keep session active but we don't need the values here
-    return (
-        <nav className ={styles.nav}>
-            <Link href={'/'}>
-                <Image
-                    src="/logo.svg"
-                    width={216}
-                    height={30}
-                    alt="Nextspace Logo"
-                />
-            </Link>
-            <ul className={styles.links}>
-                <li>
-                    <Link href={'/about'}>About</Link>
-                </li>
-                 <li>
-                    <Link href={'/blog'}>Blog</Link>
-                </li>
-                 <li>
-                    <Link href={'/users'}>Users</Link>
-                </li>
-                <li>
-                    <SignInButton/>
-                </li>
+  return (
+    <nav className={styles.nav}>
+      <Link href={'/'}>
+        <Image
+          src="/Myspace_logo_text.svg" // Route of the image file
+          width={216}
+          height={30}
+          alt="NextSpace Logo"
+        />
+      </Link>
+      <ul className={styles.links}>
+        <li>
+          <Link href={'/about'}>About</Link>
+        </li>
+        <li>
+          <Link href={'/blog'}>Blog</Link>
+        </li>
+        <li>
+          <Link href={'/users'}>Users</Link>
+        </li>
+        <li>
+          <SignInButton />
+        </li>
 
         <li>
         <AuthCheck>
