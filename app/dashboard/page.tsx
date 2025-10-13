@@ -28,6 +28,7 @@ export default async function Dashboard() {
             <h1> Dashboard </h1>
                 <SignOutButton/>
             <ProfileForm user = {user}/>
+
         </div>
     )
 

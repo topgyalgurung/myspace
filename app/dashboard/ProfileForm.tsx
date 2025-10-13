@@ -4,7 +4,7 @@ import { updateUser } from "./updateUser";
 
 // for client side validation, use required or type=email ...
 
-export function ProfileForm({ user }: any) {
+// for client side validation, use required or type=email ...
 
   // const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     
