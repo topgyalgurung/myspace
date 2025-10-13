@@ -12,19 +12,24 @@ import {prisma} from '@/lib/prisma';
 export async function POST(req:Request){
     const session = await auth();
     
-    // if (!session?.user?.email) {
-    //     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
-    const currentUserEmail = session?.user?.email!;
+    if (!session?.user?.email) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    
+    const currentUserEmail = session.user.email;
     const {targetUserId} = await req.json();
 
-    const currentUserId = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
         where:{email: currentUserEmail}
-    }).then((user) => user?.id!);
+    });
+
+    if (!user?.id) {
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
     const record = await prisma.follows.create({
         data:{
-            followerId: currentUserId,
+            followerId: user.id,
             followingId: targetUserId,
         },
     });
@@ -38,23 +43,27 @@ export async function DELETE(req:NextRequest){
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const currentUserEmail = session?.user?.email;
+    const currentUserEmail = session.user.email;
     const targetUserId = req.nextUrl.searchParams.get('targetUserId');
 
-    const currentUserId = await prisma.user
-        .findUnique({where: {email: currentUserEmail}})
-        .then((user) => user?.id!);
+    if (!targetUserId) {
+        return NextResponse.json({ error: "Target user ID is required" }, { status: 400 });
+    }
+
+    const user = await prisma.user
+        .findUnique({where: {email: currentUserEmail}});
+
+    if (!user?.id) {
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
     const record = await prisma.follows.delete({
         where:{
             followerId_followingId:{
-                followerId: currentUserId,
-                followingId: targetUserId!,
+                followerId: user.id,
+                followingId: targetUserId,
             }
         }
     })
     return NextResponse.json(record);
-
-
-
 }

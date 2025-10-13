@@ -4,19 +4,19 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 
 interface Props{
-    params:{
+    params: Promise<{
         id:string;
-    }
+    }>
 }
 
-export async function generateMetadata({params}:Props):Promise<Metadata>{
-    const {id} = await params
+export async function generateMetadata(props:Props):Promise<Metadata>{
+    const {id} = await props.params
     const user = await prisma.user.findUnique({where:{id}});
     return {title: `User profile of ${user?.name}`};
 }
 
-export default async function UserProfile({params}:Props){
-    const {id} = await params
+export default async function UserProfile(props:Props){
+    const {id} = await props.params
     const user = await prisma.user.findUnique({where:{id}});
     const {name, bio, image, age} = user ?? {};
 
@@ -31,8 +31,7 @@ export default async function UserProfile({params}:Props){
             />
             <h4>Bio: {bio}</h4>
             <h4>Age: {age}</h4>
-        
-            {/* @ts-expect-error Server Component */}
+
             <FollowButton targetUserId = {id}/>
         </div>
     )

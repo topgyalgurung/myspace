@@ -1,13 +1,36 @@
 'use client';
-import { updateUser } from "./updateUser";
+
 import styles from './dashboard.module.css';
 import { User } from '@prisma/client';
 
-export function ProfileForm({user}: {user: User}){
+export function ProfileForm({user}: {user: User | null}){
+  const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    
+    e.preventDefault();
+    
+    const formData = new FormData(e.currentTarget);
+
+    const body = {
+      name: formData.get('name'),
+      bio: formData.get('bio'),
+      age: formData.get('age'),
+      image: formData.get('image'),
+    };
+
+     const res = await fetch('/api/user', {
+       method: 'PUT',
+       body: JSON.stringify(body),
+       headers: {
+         'Content-Type': 'application/json',
+       },
+     });
+    
+    await res.json();
+  };
   return (
     <div>
       <h2 className={styles.profileFormTitle}>Edit Your Profile</h2>
-      <form action={updateUser} className={styles.profileForm}>
+      <form onSubmit={updateUser} className={styles.profileForm}>
 
         <div className={styles.formField}>
           <label className={styles.formLabel}>Name</label>

@@ -14,9 +14,10 @@ export default async function FolllowButton({targetUserId}:Props){
         return <FollowClient targetUserId={targetUserId} isFollowing={false} />;
     }
 
-    const currentUserId = await prisma.user
-        .findUnique({where:{email: session.user.email}})
-        .then((user) => user?.id!);
+    const user = await prisma.user
+        .findUnique({where:{email: session.user.email}});
+    
+    const currentUserId = user?.id;
 
     // Return early if user not found
     if (!currentUserId) {
