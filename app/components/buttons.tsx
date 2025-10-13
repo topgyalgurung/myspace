@@ -3,7 +3,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './button.module.css';
+import { useRouter } from 'next/navigation';
 
 export function SignInButton() {
   const { data: session, status } = useSession();

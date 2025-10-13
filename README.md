@@ -1,3 +1,19 @@
+## MySpace
+
+A social media platform where users can follow, unfollow each other, and interact in real time. This project focuses on implementing efficient rendering, data fetching, and caching strategies for a fast and scalable experience.
+
+### Features
+- User authentication using Google OAuth and profile management
+- Follow/Unfollow
+- Real-time feed updates
+- Optimized rendering and client/server-side caching
+- Efficient data fetching 
+
+### Tech Stack
+- Frontend: React, Next.js, Tailwind CSS
+- Backend: Prisma ORM
+- Authentication: Auth.js
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

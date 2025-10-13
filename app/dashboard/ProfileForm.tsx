@@ -1,11 +1,10 @@
 'use client';
 import { updateUser } from "./updateUser";
-import styles from './page.module.css';
 // import { useOptimistic } from "react";
 
 // for client side validation, use required or type=email ...
 
-export function ProfileForm({ user }: any) {
+// for client side validation, use required or type=email ...
 
   // const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     
@@ -32,6 +31,24 @@ export function ProfileForm({ user }: any) {
   // };
   
 
+  //   const body = {
+  //     name: formData.get('name'),
+  //     bio: formData.get('bio'),
+  //     age: formData.get('age'),
+  //     image: formData.get('image'),
+  //   };
+
+  //   const res = await fetch('/api/user', {
+  //     method: 'PUT',
+  //     body: JSON.stringify(body),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+    
+  //   await res.json();
+  // };
+  
   return (
     <div>
       <h2 className={styles.profileFormTitle}>Edit Your Profile</h2>
