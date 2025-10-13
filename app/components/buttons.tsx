@@ -31,13 +31,16 @@ export function SignInButton() {
   return <button onClick={() => signIn()}>Sign in</button>;
 }
 export function SignOutButton() {
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await signOut({ redirect: false });
-    router.push('/');
-    router.refresh();
-  };
-
-  return <button onClick={handleSignOut}>Sign out</button>;
+  return <button onClick={() => signOut()}>Sign out</button>;
 }
+// export function SignOutButton() {
+//   const router = useRouter();
+
+//   const handleSignOut = async () => {
+//     await signOut({ redirect: false });
+//     router.push('/');
+//     router.refresh();
+//   };
+
+//   return <button onClick={handleSignOut}>Sign out</button>;
+// }

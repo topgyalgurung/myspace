@@ -5,6 +5,7 @@
 import {auth} from '@/auth';
 
 import {redirect} from 'next/navigation'
+
 export default async function Home() {
   const session = await auth();
   
@@ -12,10 +13,13 @@ export default async function Home() {
     redirect('api/auth/signin');
   }
   return (
-    <main>
-
-    </main>
-
-  
+   
+<div>
+      <h1>Welcome to NextSpace!</h1>
+      <p>
+        A next-gen social media app to connect with frens inspired by MySpace
+      </p>
+      <p>To get started, sign up for an account</p>
+    </div>
   );
 }
