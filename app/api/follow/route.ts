@@ -1,4 +1,6 @@
 
+export const runtime = "nodejs";
+
 // Request(standard web api) 
 // NextRequest(build upon standar Request) - for cookies,nextUrl, ip, geo 
 

@@ -1,9 +1,4 @@
-
-// import {getServerSession}  from 'next-auth';
-// getServerSession simplified to auth() for Auth.js from NextAuth
-
 import {auth} from '@/auth';
-
 import {redirect} from 'next/navigation'
 
 export default async function Home() {
@@ -17,7 +12,7 @@ export default async function Home() {
 <div>
       <h1>Welcome to NextSpace!</h1>
       <p>
-        A next-gen social media app to connect with frens inspired by MySpace
+        A next-gen social media app to connect with friends inspired by MySpace
       </p>
       <p>To get started, sign up for an account</p>
     </div>

@@ -5,10 +5,13 @@ import {prisma} from '@/lib/prisma'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [Google]
-  
-  // you can also store session server side 
-//   session: {
-//     strategy: "database",
-// },
+  providers: [Google],
+  // Use JWT strategy for better edge runtime compatibility
+  session: {
+    strategy: "jwt",
+  },
+  // Enable database sessions only when needed
+  // session: {
+  //   strategy: "database",
+  // },
 })

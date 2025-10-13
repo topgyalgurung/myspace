@@ -1,5 +1,6 @@
 //caching 
 // export const dynamic = 'force-dynamic' // always fetches latest data 
+
 export const revalidate = 420; // data updated occassionally, update every 420 secs (rebuild on demand)
 // we can also control caching at fetch level 
     // fetch(, {cache: 'no-store' or  'force-cache'}). // no-store = never cache, force-cache= always
@@ -28,6 +29,7 @@ export async function generateStaticParams(){
         slug:post.slug,
     })) 
 }
+
 export default async function BlogPostsPage({params}: Props){
     // dedupled 
     const posts:Post[] = await fetch('http://localhost:3000/api/content').then(

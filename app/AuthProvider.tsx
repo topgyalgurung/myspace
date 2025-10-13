@@ -1,7 +1,5 @@
 // access user in the frontend 
-
 "use client"
-
 import { SessionProvider } from "next-auth/react"
 
 type Props ={
